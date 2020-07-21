@@ -1,0 +1,49 @@
+Date: 21/07/2020
+Start time: 6:28am
+Spec and plan to build 
+
+1) Build a user form that captures 3 values
+    - name, salary (number) and age (date string)
+
+2) Post the data to a REST endpoint
+3) Include some front-end tests
+
+Plan
+A 2 stage approach,
+
+1) Design this form using vanilla Javascript 
+2) Design the same thing using Angular (should take less time)
+
+Vanilla approach 
+
+1) Create the html file index.html
+    - include meta tags to resize the view
+    - add 2 divs, one to store the form fields and one for buttons
+    - add 3 input fields of type, text, number and datetime-local
+    - add 2 buttons, one to submit form and one to reset the form
+
+2) Create index.css file 
+    - create a class form for form fields style it with Flexbox
+    - add input fields CSS, add 
+        - grey background, 
+        - border-radius (5?)
+        - border-bottom (1px)
+    - add a class for buttons add 3d button effect with boxshadow
+
+3) Create index.js file 
+    - create a function to capture the form fields
+    - a function to validate the values submitted
+    - a function to submit the fields to the REST endpoint
+    - define a constant that stores the REST endpoint
+    - submit the form using XMLHttpRequest function 
+        - think about this, should we use XMLHttpRequest or Fetch?
+        - the only issue to consider is the browsers we need to support
+    - now add a listener to disable submit button till truthy values
+    - think about the functions we need to export for unit testing
+    - export an object map of functions with module.exports for JEST
+
+4) Turn this into a node project 
+    - navigate to the project directory and run npm init
+    - npm install jest --save (to add to the package.json file)
+    - write the test
+

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+        <link rel="stylesheet" href="index.css">
+        <script src="index.js"> </script>
+    </head>
+    <body onload="setupUI()">
+        <h1>Information Form</h1>
+        <div>
+            <fieldset class="form">
+                <legend>Personal Info</legend>
+                
+                <label for="name"> Name: </label>
+                <input onblur="checkValidity()" type="text" name="name" id="name" class="form-field">
+                
+                <label for="salary">Salary:</label>
+                <input onblur="checkValidity()" type="number" name="salary" id="salary" class="form-field">
+
+                <label for="age">Age:</label>
+                <input onblur="checkValidity()" type="date" name="age" id="age" class="form-field">
+            </fieldset>
+        </div>
+        <div class="buttons">
+            <button disabled="true" id="submit" class="button green" onclick="submitForm()">Submit</button>
+            <button class="button red" id="reset" onclick="resetFromUI()">Reset</button>
+        </div>
+    </body>
+</html>

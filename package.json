@@ -1,0 +1,16 @@
+{
+  "name": "iagfrontend",
+  "version": "1.0.0",
+  "description": "a simple HTML form to capture user details",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [
+    "vanilla",
+    "javascript",
+    "frontend"
+  ],
+  "author": "Bhuman Soni",
+  "license": "ISC"
+}
