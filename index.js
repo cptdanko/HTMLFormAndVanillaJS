@@ -139,7 +139,13 @@ function validateForm(data) {
     if(data.name.length < 1) {
         return false;
     }
-    if(data.age == null) {
+    if(data.age === null) {
+        return false;
+    }
+    if(Object.prototype.toString.call(data.age) !== "[object Date]") {
+        return false;
+    }
+    if(isNaN(data.age.getTime())) {
         return false;
     }
     return true;
@@ -155,11 +161,13 @@ function resetForm(elems) {
     });
 }
 
-/*module.exports = {
+module.exports = {
     validateForm: validateForm,
     checkValidity: checkValidity,
     setupUI: setupUI,   
     toggleUI: toggleUI,
     submitForm: submitForm,
-    resetForm: resetForm
-};*/
+    resetForm: resetForm,
+    getFormElems: getFormElems,
+
+};

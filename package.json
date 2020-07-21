@@ -12,5 +12,8 @@
     "frontend"
   ],
   "author": "Bhuman Soni",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^26.1.0"
+  }
 }
