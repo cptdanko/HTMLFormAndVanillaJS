@@ -1,4 +1,4 @@
-[200~# Simple HTML form with vanilla Javascript 
+# Simple HTML form with vanilla Javascript 
 A simple web page that presents a form that captures user's name, salary and dob.
 ### Project features
 - vanilla Javascript
@@ -29,9 +29,9 @@ To avoid the CORS issue, this repo uses the [Heroku CORS Anywhere] app and that 
 - [Getting started with JEST]
 - [Using Matchers in JEST]
 
-[Using Matchers in JEST]: (https://jestjs.io/docs/en/using-matchers)
-[Getting started with JEST]: (https://jestjs.io/docs/en/getting-started)
-[How to make Fetch Proxy in Javascript to avoid CORS errors]: (https://medium.com/@kennethscoggins/how-to-make-a-fetch-proxy-in-javascript-to-avoid-cors-errors-with-apis-2b93c4ed0e78)
+[Using Matchers in JEST]: https://jestjs.io/docs/en/using-matchers
+[Getting started with JEST]: https://jestjs.io/docs/en/getting-started
+[How to make Fetch Proxy in Javascript to avoid CORS errors]: https://medium.com/@kennethscoggins/how-to-make-a-fetch-proxy-in-javascript-to-avoid-cors-errors-with-apis-2b93c4ed0e78
 [CORS]: https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
-[Fetch API]: (https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API)
-[Heroku Cors Anywhere]: (https://cors-anywhere.herokuapp.com/)
+[Fetch API]: https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API
+[Heroku Cors Anywhere]: https://cors-anywhere.herokuapp.com/
