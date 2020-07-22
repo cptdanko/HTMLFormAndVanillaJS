@@ -1,6 +1,5 @@
 const UPLOAD_URL = "https://dummy.restapiexample.com/api/v1/create";
-let PROXY_URL = "https://cors-anywhere.herokuapp.com/";
-//PROXY_URL = "http://localhost:9999/"
+let PROXY_URL = "https://cors-anywhere.herokuapp.com/" + UPLOAD_URL;
 
 /* Adding it here, other we would have to write this code
 three times for the onchange functions below */
@@ -100,7 +99,7 @@ function submitForm() {
     toggleUI(true);
     showHideLoad();
     //upload data to server
-    uploadWithFetch(PROXY_URL+UPLOAD_URL, data).then(response => {
+    uploadWithFetch(PROXY_URL, data).then(response => {
         alert(`Dear ${data.name} your user id is: ${response.data.id}`);
         let formElems = getFormElems();
         resetForm(formElems);
@@ -118,7 +117,7 @@ function submitForm() {
     some the newer fetch API. Won't be usable in older 
     browsers. Depends on browsers we intend to support
 */
-async function uploadWithFetch(url = '', data) {
+async function uploadWithFetch(url, data) {
     let resp = await fetch(url, {
         method: 'POST',
         body: JSON.stringify(data)
