@@ -1,5 +1,6 @@
 const UPLOAD_URL = "https://dummy.restapiexample.com/api/v1/create";
-const PROXY_URL = `http://localhost:9999/create`;
+let PROXY_URL = "https://cors-anywhere.herokuapp.com/";
+//PROXY_URL = "http://localhost:9999/"
 
 /* Adding it here, other we would have to write this code
 three times for the onchange functions below */
@@ -22,7 +23,7 @@ function toggleUI(state) {
 /*
 Adding an onchange method to input element means extra overhead
 and can be problematic for large forms. Here, we have a very small
-form with only a handful of fields
+form with only a handful of fields.
 */
 function setupUI() {
     document.getElementById("name").onchange = function() {
@@ -51,6 +52,11 @@ function getFormElems() {
         document.getElementById("age")            
     ];
 }
+/* Code that's called from the HTML file */
+function resetFromUI() {
+    let formElems = getFormElems();
+    resetForm(formElems);
+}
 /*
     Grab all values from the UI and return them 
     as a Javascript object. Separating out the code 
@@ -71,6 +77,17 @@ function getFormData() {
     };
     return data;
 }
+function showHideLoad() {
+    let elem = document.querySelector("#loadIcon");
+
+    if(elem.classList.contains("hideElem")) {
+        elem.classList.remove("hideElem");
+        elem.classList.add('loading');
+    } else {
+        elem.classList.remove("loading");
+        elem.classList.add('hideElem');
+    }
+}
 
 function submitForm() {
     //capture the form field data
@@ -81,16 +98,21 @@ function submitForm() {
         return;
     }
     toggleUI(true);
+    showHideLoad();
     //upload data to server
-    uploadWithFetch(PROXY_URL, data).then(response => {
+    uploadWithFetch(PROXY_URL+UPLOAD_URL, data).then(response => {
         alert(`Dear ${data.name} your user id is: ${response.data.id}`);
         let formElems = getFormElems();
         resetForm(formElems);
         toggleUI(false);
+        showHideLoad();
     }).catch(() => {
+        showHideLoad();
         toggleUI(false);
+        alert(`Sorry we are having trouble creating your id, please try again later?`);
     });
 }
+
 /*
     This is the very modern implementation using 
     some the newer fetch API. Won't be usable in older 
@@ -103,31 +125,7 @@ async function uploadWithFetch(url = '', data) {
     });
     return resp.json();
 }
-/*
-    If browser compatibility is sn issue, then use this method to 
-    upload as XMLHttpRequest is compitable with older browsers.
-*/
-function uploadData(url, data) {
-    return new Promise((resolve, reject) => {
-        let request = new XMLHttpRequest();
-        //request.open("POST", PROXY_URL, true);
-        request.open("POST", url, true);
-        request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 
-        request.onload = function(e) {
-            if(request.readyState === 4) {
-                if(request.status === 200) {
-                    let responseBody = JSON.parse(request.responseText);
-                    resolve(responseBody);
-                } else {
-                    reject('Error posting');
-                }
-            } 
-        }
-        request.send(data);
-    });
-
-}
 function validateForm(data) {
 
     if(data.salary === "") {
@@ -150,10 +148,6 @@ function validateForm(data) {
     }
     return true;
 }
-function resetFromUI() {
-    let formElems = getFormElems();
-    resetForm(formElems);
-}
 /* The method below is more like a private method */
 function resetForm(elems) {
     elems.forEach(e => {
@@ -169,5 +163,4 @@ module.exports = {
     submitForm: submitForm,
     resetForm: resetForm,
     getFormElems: getFormElems,
-
 };

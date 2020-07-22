@@ -49,5 +49,4 @@ describe("Test form elements manipulation methods", () => {
         let data = mockdata();
         expect(indexModule.validateForm(data)).toBeTruthy();
     });
-
 });

@@ -1,4 +1,5 @@
 const UPLOAD_URL = "https://dummy.restapiexample.com/api/v1/create";
+
 var express = require("express");
 var app = express();
 
@@ -29,3 +30,23 @@ app.post('/create', function(req, res) {
         delete response.headers['access-control-allow-origin']
     }).pipe(res);
 });
+
+/*const express = require(`express`);
+const axios = require(`axios`);
+const bodyParser = require(`body-parser`);
+const cors = require(`cors`);
+const CircularJSON = require(`circular-json`);
+const app = express();
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors());
+// call the API
+app.get(`/`, (req, res) => {
+    axios.post(`https://bing.com/covid/data`)
+        .then(data => {
+            res.send(CircularJSON.stringify(data.data));
+    }).catch(error=> {
+        console.log(error.message);
+    })
+});
+app.listen(3000, () => console.log(`server started`));*/
