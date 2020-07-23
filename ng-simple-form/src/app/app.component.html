@@ -1,0 +1,30 @@
+<h1>{{labels.header}}</h1>
+<div>
+    <fieldset class="form">
+        <legend>Personal Info</legend>
+        
+        <label for="name"> {{labels.name}} </label>
+        <input type="text" 
+        [(ngModel)]="name" 
+        class="form-field"
+        (input)="onChange($event.target.value)">
+        
+        <label for="salary">{{labels.salary}}</label>
+        <input type="number" 
+            [(ngModel)]="salary" 
+            class="form-field"
+            (input)="onChange($event.target.value)">
+
+        <label for="age">{{labels.age}}</label>
+        <input type="date" 
+        [(ngModel)]="age" 
+        class="form-field"
+        (input)="onChange($event.target.value)">
+        
+    </fieldset>
+</div>
+<div class="buttons">
+    <button [disabled]="cantSubmit" id="submit" class="button green" (click)="submitForm()">{{labels.submit}}</button>
+    <button class="button red" id="reset" (click)="resetFromUI()">{{labels.reset}}</button>
+</div>
+<div id="loadIcon" class="hideElem"> {{labels.loading}} </div>

@@ -1,0 +1,16 @@
+{
+    "/create": {
+      "target": "http://dummy.restapiexample.com/create",
+      "secure": false,
+      "changeOrigin": true,
+      "logLevel": "debug"
+    },
+    "/api": {
+      "target": "http://npmjs.org",
+      "secure": false,
+      "pathRewrite": {
+        "^/api": ""
+      },
+      "changeOrigin": true
+    }
+  }
