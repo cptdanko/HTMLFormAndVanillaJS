@@ -13,9 +13,14 @@ function checkDisableSubmit() {
     }
 }
 function toggleUI(state) {
-    document.getElementById("name").disabled = state;
-    document.getElementById("salary").disabled = state;
-    document.getElementById("age").disabled = state;
+    //we could get all the elements here using getFormElems
+    //except we would have to add buttons to it?
+    let elements = getFormElems();
+    elements.forEach(elem => {
+        elem.onchange = function() {
+            elem.disabled = state;
+        }
+    });
     document.getElementById("submit").disabled = state;
     document.getElementById("reset").disabled = state;
 }
@@ -25,15 +30,14 @@ and can be problematic for large forms. Here, we have a very small
 form with only a handful of fields.
 */
 function setupUI() {
-    document.getElementById("name").onchange = function() {
-        checkDisableSubmit();
-    };
-    document.getElementById("salary").onchange = function() {
-        checkDisableSubmit();
-    }
-    document.getElementById("age").onchange = function() {
-        checkDisableSubmit();
-    };
+    //ha Javascript, we can use getFormElems here before 
+    //declaration long live hoisting!!!!!
+    let elements = getFormElems();
+    elements.forEach(elem => {
+        elem.onchange = function() {
+            checkDisableSubmit();
+        }
+    });
 }
 
 function checkValidity() {
@@ -43,7 +47,7 @@ function checkValidity() {
         submitBtn.disabled = false;
     }
 }
-
+/* use this function more in the rest of the code */
 function getFormElems() {
     return [
         document.getElementById("name"),
@@ -51,7 +55,9 @@ function getFormElems() {
         document.getElementById("age")            
     ];
 }
-/* Code that's called from the HTML file */
+/* Code that's called from the HTML file 
+typo Bhuman, it's consistent in both files
+but spell better mate*/
 function resetFromUI() {
     let formElems = getFormElems();
     resetForm(formElems);
@@ -59,7 +65,10 @@ function resetFromUI() {
 /*
     Grab all values from the UI and return them 
     as a Javascript object. Separating out the code 
-    so it's more testable
+    so it's more testable.
+    Use getFormElems() here? or maybe not? We have to 
+    build the object and with the name, salary, age 
+    properties anyway
 */
 function getFormData() {
     let name = document.getElementById("name").value;
@@ -114,8 +123,8 @@ function submitForm() {
 
 /*
     This is the very modern implementation using 
-    some the newer fetch API. Won't be usable in older 
-    browsers. Depends on browsers we intend to support
+    the newer fetch API. Won't be usable in older 
+    browsers. If it's an issue, use XMLHttpRequest
 */
 async function uploadWithFetch(url, data) {
     let resp = await fetch(url, {
